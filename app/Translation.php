@@ -2,9 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Translation extends Model
+class Translation extends Eloquent
 {
-    //
+    protected $connection = 'mongodb';
+
+
+    protected $collection = 'translations';
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TranslationsTableSeeder extends Seeder
 {
@@ -11,6 +12,13 @@ class TranslationsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::collection('translations')->delete();
+        DB::collection('translations')->insert(
+            [
+                'appId' => 2,
+                'moduleId' => 1,
+                'languageId' => 3,
+                'title' => 'Ovo je prevod'
+            ]);
     }
 }

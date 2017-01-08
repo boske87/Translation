@@ -1,21 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+
+use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateTranslationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    protected $connection = 'mongodb';
+
+
     public function up()
     {
-        Schema::table('translations', function (Blueprint $table) {
-            //
+
+        Schema::connection($this->connection)->table('translations', function(Blueprint $collection)
+        {
+            $collection->index('id');
+            $collection->index('appId');
+            $collection->index('moduleId');
+            $collection->index('languageId');
+            $collection->text('title');
+            $collection->timestamps();
         });
+
+
     }
 
     /**
@@ -25,8 +32,10 @@ class CreateTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('translations', function (Blueprint $table) {
-            //
+
+        Schema::connection($this->connection)->table('translations', function(Blueprint $collection)
+        {
+            $collection->drop();
         });
     }
 }

@@ -13,7 +13,7 @@ class CreateTranslationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class CreateTranslationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'appId'    => 'required',
+            'moduleId' => 'required',
+            'languageId' => 'required',
+            'title' => 'required'
         ];
     }
 }
